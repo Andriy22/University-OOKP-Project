@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace OOKP_LAB.Entities
@@ -9,6 +8,6 @@ namespace OOKP_LAB.Entities
         public DBContext(DbContextOptions options) : base(options)
         { }
 
-        public DbSet<User> Users { get; set; } 
+        public DbSet<User> Users { get; set; }
     }
 }

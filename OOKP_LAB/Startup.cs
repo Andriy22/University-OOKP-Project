@@ -1,16 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OOKP_LAB.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using OOKP_LAB.Services.Implementations;
+using OOKP_LAB.Services.Interfaces;
 
 namespace OOKP_LAB
 {
@@ -29,8 +26,11 @@ namespace OOKP_LAB
             services.AddControllersWithViews();
 
             services.AddDbContext<DBContext>(options =>
-               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => { b.EnableRetryOnFailure(); 
-                                                                                                   b.MigrationsAssembly("OOKP_LAB"); }));
+               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b =>
+               {
+                   b.EnableRetryOnFailure();
+                   b.MigrationsAssembly("OOKP_LAB");
+               }));
             services.AddIdentity<User, IdentityRole>()
                    .AddRoles<IdentityRole>()
                    .AddEntityFrameworkStores<DBContext>();
@@ -49,6 +49,8 @@ namespace OOKP_LAB
             });
             builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), builder.Services);
             builder.AddEntityFrameworkStores<DBContext>().AddDefaultTokenProviders();
+
+            services.AddScoped<IRegistrationService, RegistrationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

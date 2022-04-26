@@ -1,5 +1,3 @@
-using System;
-
 namespace OOKP_LAB.Models
 {
     public class ErrorViewModel
