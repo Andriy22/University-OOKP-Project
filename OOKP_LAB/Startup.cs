@@ -29,7 +29,8 @@ namespace OOKP_LAB
             services.AddControllersWithViews();
 
             services.AddDbContext<DBContext>(options =>
-               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => { b.EnableRetryOnFailure(); b.MigrationsAssembly("OOKP_LAB"); }));
+               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => { b.EnableRetryOnFailure(); 
+                                                                                                   b.MigrationsAssembly("OOKP_LAB"); }));
             services.AddIdentity<User, IdentityRole>()
                    .AddRoles<IdentityRole>()
                    .AddEntityFrameworkStores<DBContext>();

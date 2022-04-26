@@ -46,11 +46,11 @@ namespace OOKP_LAB.Controllers
                 };
 
                
-                var result = userManager.CreateAsync(user, model.Password).Result;
+                var result = await userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
-                    var token = userManager.GenerateEmailConfirmationTokenAsync(user).Result;
+                    var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
 
                     await userManager.ConfirmEmailAsync(user, token);
 
@@ -96,10 +96,6 @@ namespace OOKP_LAB.Controllers
                 {
                     return View();
                 }
-
-
-
-
             }
             catch(Exception e)
             {

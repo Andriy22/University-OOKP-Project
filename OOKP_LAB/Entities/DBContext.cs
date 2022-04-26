@@ -7,9 +7,7 @@ namespace OOKP_LAB.Entities
     public class DBContext : IdentityDbContext
     {
         public DBContext(DbContextOptions options) : base(options)
-        {
-
-        }
+        { }
 
         public DbSet<User> Users { get; set; } 
     }
